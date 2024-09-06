@@ -1,0 +1,4 @@
+ebaysdk
+requests
+python-dotenv 
+beautifulsoup4
