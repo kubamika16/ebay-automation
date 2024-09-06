@@ -3,7 +3,7 @@ import requests
 from dotenv import load_dotenv
 from ebaysdk.finding import Connection as Finding
 from ebaysdk.exception import ConnectionError
-from bs4 import BeautifulSoup  # to clean the HTML in descriptions
+from utils import clean_description
 
 # Load environment variables from .env file
 load_dotenv()
@@ -35,14 +35,6 @@ def search_items(itemName):
                     print("-" * 40)
     except ConnectionError as e:
         print(f"Error: {e}")
-
-def clean_description(description):
-    """Cleans HTML from the description using BeautifulSoup"""
-    if description:
-        soup = BeautifulSoup(description, 'html.parser')
-        return soup.get_text(separator="\n").strip()
-    return "No description available."
-
 
 def get_item_details(item_id):
     """Fetch details of an item from eBay by its item ID"""
