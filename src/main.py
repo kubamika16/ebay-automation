@@ -1,9 +1,8 @@
-from ebay_connector import search_items, get_item_details
+from ebay_connector import search_items
 
 
 def main():
-    search_items('iPhone 12')
-    # print(get_item_details('296668540754'))
+    search_items('iPhone 12', 150, 200, 20)
 
     
 

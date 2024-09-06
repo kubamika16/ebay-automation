@@ -1,5 +1,6 @@
 import os
 import requests
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from ebaysdk.finding import Connection as Finding
 from ebaysdk.exception import ConnectionError
@@ -10,31 +11,50 @@ load_dotenv()
 access_token = os.getenv('EBAY_ACCESS_TOKEN')
 ebay_app_id = os.getenv('EBAY_APP_ID')
 
-def search_items(itemName):
-    """Search for items with specific filters using eBay Finding API"""
+def search_items(item_name, min_price, max_price, time_limit_minutes):
     try:
         api = Finding(appid=ebay_app_id, config_file=None)
+
+        # Get the current time and calculate the time limit
+        current_time = datetime.now(timezone.utc)
+        time_limit = current_time - timedelta(minutes=time_limit_minutes)
+
         request = {
-            'keywords': itemName,
+            'keywords': item_name,
             'itemFilter': [
-                {'name': 'MaxPrice', 'value': 100},
-                {'name': 'Condition', 'value': 'Used'},  # You can adjust this as needed
-                {'name': 'ListingType', 'value': 'FixedPrice'},  # For Buy It Now listings
+                {'name': 'MinPrice', 'value': min_price, 'paramName': 'Currency', 'paramValue': 'GBP'},
+                {'name': 'MaxPrice', 'value': max_price, 'paramName': 'Currency', 'paramValue': 'GBP'},
+                {'name': 'Condition', 'value': 'Used'},
+                {'name': 'LocatedIn', 'value': 'GB'}
             ],
-            'outputSelector': 'PictureURLLarge'  # To include image URLs
+            'sortOrder': 'StartTimeNewest',
         }
+
         response = api.execute('findItemsAdvanced', request)
         items = response.reply.searchResult.item
+
+        # Loop through the results and filter by startTime
         for item in items:
-                    print(f"ID: {item.itemId}")
-                    print(f"Title: {item.title}")
-                    print(f"Description: {get_item_details(item.itemId)}")
-                    print(f"URL: {item.viewItemURL}")  # URL for manual inspection
-                    print(f"Price: {item.sellingStatus.currentPrice.value}")
-                    print(f"Image URL: {item.galleryURL}")  # Image for analysis
-                    print("-" * 40)
+            # Ensure item_start_time is in UTC (offset-aware)
+            item_start_time = item.listingInfo.startTime
+
+            if item_start_time.tzinfo is None:
+                item_start_time = item_start_time.replace(tzinfo=timezone.utc)
+
+           
+            # If the item was listed within the last `time_limit_minutes`
+            if item_start_time >= time_limit:
+                print(f"ID: {item.itemId}")
+                print(f"Title: {item.title}")
+                print(f"Description: {get_item_details(item.itemId)}")
+                print(f"URL: {item.viewItemURL}")
+                print(f"Price: {item.sellingStatus.currentPrice.value}")
+                print(f"Image URL: {item.galleryURL}")
+                print("-" * 40)
+
     except ConnectionError as e:
         print(f"Error: {e}")
+
 
 def get_item_details(item_id):
     """Fetch details of an item from eBay by its item ID"""
@@ -61,5 +81,5 @@ def get_item_details(item_id):
 
 # Example function call
 if __name__ == "__main__":
-    print(search_items('iPhone 11'))
-    print(get_item_details(326164639406))
+    search_items('iPhone 12', 150, 200, 10)
+    # print(get_item_details(326164639406))
