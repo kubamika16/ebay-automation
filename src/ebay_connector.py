@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from ebaysdk.finding import Connection as Finding
 from ebaysdk.exception import ConnectionError
 from utils import clean_description
+import pytz
+
+from openai_interaction import analyze_item_condition
 
 # Load environment variables from .env file
 load_dotenv()
@@ -38,9 +41,16 @@ def search_items(item_name, min_price, max_price, time_limit_minutes):
     try:
         api = Finding(appid=ebay_app_id, config_file=None)
 
-        # Get the current time and calculate the time limit
+        # Get the current time in UTC
         current_time = datetime.now(timezone.utc)
-        time_limit = current_time - timedelta(minutes=time_limit_minutes)
+
+        # Adjust to UK local time (BST/GMT)
+        uk_timezone = pytz.timezone('Europe/London')
+        uk_local_time = current_time.astimezone(uk_timezone)
+
+        # Calculate time limit
+        time_limit = uk_local_time - timedelta(minutes=time_limit_minutes)
+        print(f"Time Limit: {time_limit}")
 
         request = {
             'keywords': item_name,
@@ -58,7 +68,7 @@ def search_items(item_name, min_price, max_price, time_limit_minutes):
 
         # Initialize an empty list to store relevant item data
         item_list = []
-
+        print(f"Number of items in general: {len(items)}")
         # Loop through the results and filter by startTime
         for item in items:
             # Ensure item_start_time is in UTC (offset-aware)
@@ -66,20 +76,20 @@ def search_items(item_name, min_price, max_price, time_limit_minutes):
 
             if item_start_time.tzinfo is None:
                 item_start_time = item_start_time.replace(tzinfo=timezone.utc)
-
-           
             # If the item was listed within the last `time_limit_minutes`
             if item_start_time >= time_limit:
+                #Fetch items description from eBay
+                description = get_item_details(item.itemId)
 
                 # Store all relevant details into a dictionary
                 item_data = {
                     'ID': item.itemId,
                     'Title': item.title,
-                    'Description': get_item_details(item.itemId),  # Fetch the description
+                    'Description': description,
+                    'Condition Status': analyze_item_condition(description),
                     'URL': item.viewItemURL,
                     'Price': item.sellingStatus.currentPrice.value,
                     'Image URL': item.galleryURL,
-                    'Start Time': item_start_time
                 }
                 item_list.append(item_data)
 
@@ -99,5 +109,15 @@ def search_items(item_name, min_price, max_price, time_limit_minutes):
 
 # Example function call
 if __name__ == "__main__":
-    search_items('iPhone 12', 150, 200, 30)
-    # print(get_item_details(326164639406))
+    search_items('iPhone 12', 150, 200, 150)
+    # print(get_item_details(226338177634))
+
+
+
+
+
+
+
+
+
+
