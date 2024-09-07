@@ -1,19 +1,32 @@
 from ebay_data_processor import process_ebay_items, filter_undervalued_items
 
 def main():
-    # List of iPhones with model name and price range (in GBP)
+    # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 12 64GB', 'min_price': 150, 'max_price': 200},
-        {'name': 'iPhone 12 128GB', 'min_price': 170, 'max_price': 250},
+        {'name': 'iPhone 8 64GB', 'min_price': 100, 'max_price': 150},
+        {'name': 'iPhone 8 128GB', 'min_price': 120, 'max_price': 170},
+        {'name': 'iPhone 8 Plus 64GB', 'min_price': 140, 'max_price': 190},
+        {'name': 'iPhone 8 Plus 128GB', 'min_price': 160, 'max_price': 220},
+
+        {'name': 'iPhone X 64GB', 'min_price': 180, 'max_price': 250},
+        {'name': 'iPhone X 256GB', 'min_price': 230, 'max_price': 300},
+
+        {'name': 'iPhone XR 64GB', 'min_price': 170, 'max_price': 220},
+        {'name': 'iPhone XR 128GB', 'min_price': 190, 'max_price': 260},
+
+        {'name': 'iPhone XS 64GB', 'min_price': 200, 'max_price': 300},
+        {'name': 'iPhone XS 256GB', 'min_price': 250, 'max_price': 350},
+        {'name': 'iPhone XS Max 64GB', 'min_price': 250, 'max_price': 350},
+        {'name': 'iPhone XS Max 256GB', 'min_price': 300, 'max_price': 400},
+
         {'name': 'iPhone 11 64GB', 'min_price': 130, 'max_price': 180},
         {'name': 'iPhone 11 128GB', 'min_price': 150, 'max_price': 230},
-        {'name': 'iPhone 13 128GB', 'min_price': 300, 'max_price': 400},
-        {'name': 'iPhone 13 256GB', 'min_price': 350, 'max_price': 450},
+
+        {'name': 'iPhone 12 64GB', 'min_price': 150, 'max_price': 200},
+        {'name': 'iPhone 12 128GB', 'min_price': 170, 'max_price': 250},
+
         {'name': 'iPhone 12 Pro 128GB', 'min_price': 250, 'max_price': 350},
-        {'name': 'iPhone 12 Pro 256GB', 'min_price': 300, 'max_price': 400},
-        {'name': 'iPhone 13 Pro 128GB', 'min_price': 450, 'max_price': 550},
-        {'name': 'iPhone 13 Pro 256GB', 'min_price': 500, 'max_price': 600},
-        # Add more models as needed
+        {'name': 'iPhone 12 Pro 256GB', 'min_price': 300, 'max_price': 400}
     ]
 
     all_items = []
@@ -21,7 +34,7 @@ def main():
      # Iterate over the list of iPhones and fetch eBay items for each one
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
-        ebay_items = process_ebay_items(iphone['name'], iphone['min_price'], iphone['max_price'], 60)
+        ebay_items = process_ebay_items(iphone['name'], iphone['min_price'], iphone['max_price'], 120)
         all_items.extend(ebay_items) # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
