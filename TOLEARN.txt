@@ -3,3 +3,7 @@
 3.     for variant in iphone_variants:
         item_name, min_price, max_price = variant
         What this means?
+4. What extend function in python arrays do?
+5. About  using docstrings
+6. Logging and Monitoring: Add logging to track errors and performance across different steps, such as when fetching eBay data or processing it with GPT. You can use Python's logging module to capture these events in a log file for better debugging and monitoring.
+7. Unit Testing: As your codebase grows, adding unit tests can help ensure everything continues to function as expected. You can use Python’s unittest or pytest frameworks to write tests for your functions.
