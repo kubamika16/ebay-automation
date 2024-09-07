@@ -1,2 +1,5 @@
 1. How lean_description(description) works
 2. offset-naive and offset-aware datetimes
+3.     for variant in iphone_variants:
+        item_name, min_price, max_price = variant
+        What this means?
