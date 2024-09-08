@@ -15,6 +15,7 @@ load_dotenv()
 access_token = os.getenv('EBAY_ACCESS_TOKEN')
 ebay_app_id = os.getenv('EBAY_APP_ID')
 
+
 def get_item_details(item_id):
     """Fetch detailed information about a specific eBay item."""
     url = f"https://api.ebay.com/buy/browse/v1/item/v1|{item_id}|0"
@@ -29,7 +30,7 @@ def get_item_details(item_id):
     # Check if the request was successful
     if response.status_code == 200:
         json_response = response.json()
-        
+
         # If description is available, clean it
         if 'description' in json_response:
             raw_description = json_response['description']
@@ -40,6 +41,7 @@ def get_item_details(item_id):
     else:
         return f"Error: {response.status_code}, {response.text}"
 
+
 def fetch_items_from_ebay(item_name, min_price, max_price, time_limit_minutes):
     """Search eBay for items based on keywords, price range, and condition."""
     try:
@@ -49,12 +51,17 @@ def fetch_items_from_ebay(item_name, min_price, max_price, time_limit_minutes):
         request = {
             'keywords': item_name,
             'itemFilter': [
-                {'name': 'MinPrice', 'value': min_price, 'paramName': 'Currency', 'paramValue': 'GBP'},
-                {'name': 'MaxPrice', 'value': max_price, 'paramName': 'Currency', 'paramValue': 'GBP'},
+                {'name': 'MinPrice', 'value': min_price,
+                    'paramName': 'Currency', 'paramValue': 'GBP'},
+                {'name': 'MaxPrice', 'value': max_price,
+                    'paramName': 'Currency', 'paramValue': 'GBP'},
                 {'name': 'Condition', 'value': 'Used'},
-                {'name': 'LocatedIn', 'value': 'GB'}
+                {'name': 'LocatedIn', 'value': 'GB'},
+                # Only include Buy It Now listings
+                {'name': 'ListingType', 'value': 'FixedPrice'}
             ],
-            'sortOrder': 'StartTimeNewest', # Sort by newest listings
+            'sortOrder': 'StartTimeNewest',  # Sort by newest listings
+            # 'listingType': ['FixedPrice']  # Only retrieve Buy It Now listings
         }
 
         # Execute the search and return the found items
@@ -65,18 +72,7 @@ def fetch_items_from_ebay(item_name, min_price, max_price, time_limit_minutes):
         print(f"Error: {e}")
         return []
 
+
 # Example function call
 if __name__ == "__main__":
     fetch_items_from_ebay('iPhone 12 64GB', 150, 300, 60)
-
-
-
-
-
-
-
-
-
-
-
-
