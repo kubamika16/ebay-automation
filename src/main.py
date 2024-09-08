@@ -1,5 +1,6 @@
 from ebay_data_processor import process_ebay_items, filter_undervalued_items
 
+
 def main():
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
@@ -26,16 +27,17 @@ def main():
         {'name': 'iPhone 12 128GB', 'min_price': 120, 'max_price': 160},
 
         {'name': 'iPhone 12 Pro 128GB', 'min_price': 120, 'max_price': 180},
-        {'name': 'iPhone 12 Pro 256GB', 'min_price': 130, 'max_price': 200}
+        {'name': 'iPhone 12 Pro 256GB', 'min_price': 110, 'max_price': 200}
     ]
 
     all_items = []
 
-     # Iterate over the list of iPhones and fetch eBay items for each one
+    # Iterate over the list of iPhones and fetch eBay items for each one
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
-        ebay_items = process_ebay_items(iphone['name'], iphone['min_price'], iphone['max_price'], 120)
-        all_items.extend(ebay_items) # Combine results from each iPhone model
+        ebay_items = process_ebay_items(
+            iphone['name'], iphone['min_price'], iphone['max_price'], 120)
+        all_items.extend(ebay_items)  # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
     undervalued_items = filter_undervalued_items(all_items)
@@ -43,6 +45,7 @@ def main():
     # Display the number and details of undervalued items
     print(f"Number of undervalued items: {len(undervalued_items)}")
     print(undervalued_items)
+
 
 if __name__ == "__main__":
     main()
