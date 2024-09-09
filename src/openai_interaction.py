@@ -31,9 +31,9 @@ def get_openai_response(prompt, model="gpt-4o"):
          return None
 
 
-def analyze_item_condition(description):
+def analyze_item_condition(description, item_title):
     # Create the prompt with the item's description
-    item_status_prompt = f"You have to analyze description provided below, to check if the item has any vulnerabilities. If item is in bad condition (broken screen, broken back, things like camera or other components not working), just write down 'BAD CONDITION'. If item is in good condition, write 'GOOD CONDITION'. Don't write anything else in your message. Item's description: {description}"
+    item_status_prompt = f"You have 2 things to analyze. If both are correct you're going to return 'GOOD CONDITION' or 'BAD CONDITION'.|1: You have to look at this title '{item_title}'. If item is other than iPhone from range (iPhone 8 to iPhone 12), that's straight away BAD CONDITION. If title is in that range, that's a GOOD CONDITION ( |2:You have to analyze description provided below, to check if the item has any vulnerabilities. If item is in bad condition (broken screen, broken back, things like camera or other components not working or bad battery condition, broken charging port, you name it...), just write down 'BAD CONDITION'. If item is in good condition, write 'GOOD CONDITION'. Don't write anything else in your message. Item's description: {description}"
 
     # Send the prompt to GPT API (you'd have your OpenAI API integration here)
     response = get_openai_response(item_status_prompt)  # Placeholder function for API call

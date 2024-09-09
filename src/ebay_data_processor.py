@@ -38,7 +38,7 @@ def process_ebay_items(item_name, min_price, max_price, time_limit_minutes):
 
             # Get item description and analyze condition
             description = clean_description(get_item_details(item.itemId))
-            condition_status = analyze_item_condition(description)
+            condition_status = analyze_item_condition(description, item.title)
             gpt4o_interaction_counter = gpt4o_interaction_counter + 1
 
             # Store relevant details about the item

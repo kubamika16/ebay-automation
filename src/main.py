@@ -4,15 +4,15 @@ from ebay_data_processor import process_ebay_items, filter_undervalued_items
 def main():
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 40},
+        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
         {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 70},
 
-        {'name': 'iPhone X 64GB', 'min_price': 50, 'max_price': 90},
+        {'name': 'iPhone X 64GB', 'min_price': 40, 'max_price': 70},
         {'name': 'iPhone X 256GB', 'min_price': 50, 'max_price': 90},
 
-        {'name': 'iPhone XR 64GB', 'min_price': 40, 'max_price': 80},
+        {'name': 'iPhone XR 64GB', 'min_price': 40, 'max_price': 70},
         {'name': 'iPhone XR 128GB', 'min_price': 60, 'max_price': 100},
 
         {'name': 'iPhone XS 64GB', 'min_price': 60, 'max_price': 100},
@@ -36,7 +36,7 @@ def main():
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], 200)
+            iphone['name'], iphone['min_price'], iphone['max_price'], 2000)
         all_items.extend(ebay_items)  # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
