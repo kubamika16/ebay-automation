@@ -1,0 +1,50 @@
+name: Deploy Lambda Function
+
+on:
+  push:
+    paths:
+      - "**.py"
+      - "src/**"
+      - "package/**"
+      - "requirements.txt"
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt --target ./package
+
+      - name: Create zip for Lambda deployment
+        run: |
+          mkdir -p deployment
+          cp -r src/ deployment/
+          cp -r package/* deployment/
+          cd deployment
+          zip -r ../code.zip .
+
+      - name: Deploy to AWS Lambda
+        uses: aws-actions/aws-cli-action@v1
+        with:
+          args: |
+            lambda update-function-code \
+              --function-name arn:aws:lambda:eu-west-2:779846800085:function:ebay-automation \
+              --zip-file fileb://code.zip
+        env:
+          EBAY_ACCESS_TOKEN: ${{ secrets.EBAY_ACCESS_TOKEN }}
+          EBAY_APP_ID: ${{ secrets.EBAY_APP_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AWS_DEFAULT_REGION: "eu-west-2"
