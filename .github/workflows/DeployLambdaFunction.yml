@@ -30,9 +30,9 @@ jobs:
 
       - name: Create zip for Lambda deployment
         run: |
-          mkdir -p deployment
-          cp -r src/ deployment/
-          cp -r package/* deployment/
+          mkdir deployment
+          cp -r src/ deployment/src/
+          cp -r package/ deployment/package/
           cd deployment
           zip -r ../code.zip .
 
