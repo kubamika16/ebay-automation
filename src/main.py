@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 
 def main(event, context):
+    print('Hello!')
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
         {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 37},
