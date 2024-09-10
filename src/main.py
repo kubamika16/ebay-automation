@@ -2,7 +2,8 @@ import os
 import sys
 
 
-# This ensures the 'package' directory is in the path
+# This ensures the 'package' and 'src' directory is in the path
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
