@@ -6,13 +6,13 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
-from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
+from ebay_data_processor import process_ebay_items, filter_undervalued_items
 
-def main(event, context):
+def main():
     print('Hello!')
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 36},
+        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 34},
         {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 70},
@@ -44,7 +44,7 @@ def main(event, context):
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], 1000)
+            iphone['name'], iphone['min_price'], iphone['max_price'], 100)
         all_items.extend(ebay_items)  # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
