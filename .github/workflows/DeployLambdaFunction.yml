@@ -28,18 +28,19 @@ jobs:
           . venv/bin/activate
           pip install -r requirements.txt --target ./package
 
+      - name: Create zip for Lambda deployment
+        run: |
+          mkdir -p deployment/src
+          mkdir -p deployment/package
+          cp -r src/* deployment/src/
+          cp -r package/* deployment/package/
+          cd deployment
+          zip -r ../code.zip .
+
       - name: List deployment directory contents for debugging
         run: |
           ls -la deployment/src/
           ls -la deployment/package/
-
-      - name: Create zip for Lambda deployment
-        run: |
-          mkdir deployment
-          cp -r src/ deployment/src/
-          cp -r package/ deployment/package/
-          cd deployment
-          zip -r ../code.zip .
 
       - name: Install AWS CLI
         run: |
