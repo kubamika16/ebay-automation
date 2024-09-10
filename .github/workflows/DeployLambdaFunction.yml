@@ -30,8 +30,8 @@ jobs:
 
       - name: List deployment directory contents for debugging
         run: |
-        ls -la deployment/src/
-        ls -la deployment/package/
+          ls -la deployment/src/
+          ls -la deployment/package/
 
       - name: Create zip for Lambda deployment
         run: |

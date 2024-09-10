@@ -12,7 +12,7 @@ def main(event, context):
     print('Hello!')
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 36},
+        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
         {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 70},
