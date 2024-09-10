@@ -39,7 +39,7 @@ def main(event, context):
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], 2000)
+            iphone['name'], iphone['min_price'], iphone['max_price'], 100)
         all_items.extend(ebay_items)  # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
