@@ -60,3 +60,5 @@ jobs:
           EBAY_APP_ID: ${{ secrets.EBAY_APP_ID }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           AWS_DEFAULT_REGION: "eu-west-2"
+          PUSH_NOTIFICATION_TOKEN: ${{ secrets.PUSH_NOTIFICATION_TOKEN }}
+          PUSH_NOTIFICATION_USER: ${{ secrets.PUSH_NOTIFICATION_USER }}
