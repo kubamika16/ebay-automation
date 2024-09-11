@@ -56,8 +56,7 @@ def main(event, context):
     undervalued_items = filter_undervalued_items(all_items)
 
     # Display the number and details of undervalued items
-    print(f"Number of undervalued items: {len(undervalued_items)}")
-    print(undervalued_items)
+    print(f"Number of undervalued items ({len(undervalued_items)}): {undervalued_items}")
 
     # Send notifications for undervalued items
     for item in undervalued_items:
