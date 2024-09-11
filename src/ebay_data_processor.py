@@ -54,7 +54,7 @@ def process_ebay_items(item_name, min_price, max_price, time_limit_minutes):
             })
     # Debugging: Print how many GPT interactions occurred
     print(gpt4o_interaction_counter)
-    print(relevant_items)
+    # print(relevant_items)
     return relevant_items
 
 

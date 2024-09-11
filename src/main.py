@@ -9,16 +9,15 @@ from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 from src.utils import push_notification_sender
 
 def main(event, context):
-    print('Hello!')
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
-        {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
-        {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
-        {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 70},
+        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 350},
+        {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 600},
+        {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 600},
+        {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 700},
 
-        {'name': 'iPhone X 64GB', 'min_price': 40, 'max_price': 70},
-        {'name': 'iPhone X 256GB', 'min_price': 50, 'max_price': 90},
+        {'name': 'iPhone X 64GB', 'min_price': 40, 'max_price': 700},
+        {'name': 'iPhone X 256GB', 'min_price': 50, 'max_price': 900},
 
         {'name': 'iPhone XR 64GB', 'min_price': 40, 'max_price': 70},
         {'name': 'iPhone XR 128GB', 'min_price': 60, 'max_price': 100},
@@ -45,6 +44,12 @@ def main(event, context):
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
             iphone['name'], iphone['min_price'], iphone['max_price'], 1000)
+        
+        # Add price range to each eBay item
+        price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
+        for item in ebay_items:
+            item['Price Range'] = price_range_message
+
         all_items.extend(ebay_items)  # Combine results from each iPhone model
 
      # Filter out undervalued items based on their condition status
@@ -54,10 +59,14 @@ def main(event, context):
     print(f"Number of undervalued items: {len(undervalued_items)}")
     print(undervalued_items)
 
+    # Send notifications for undervalued items
     for item in undervalued_items:
-        # print(f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}")
-        # Use certifi's certificate bundle
-        push_notification_sender(f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}")
+        try:
+            message = f"Undervalued item: <b>{item['Title']}</b>\nPrice: £{item['Price']} (within range of {item['Price Range']})\n<a href='{item['URL']}'>Check it out</a>"
+            print(f"Sending notification: {message}")
+            push_notification_sender(message)
+        except Exception as e:
+            print(f"Failed to send notification for item {item['ID']}: {str(e)}")
 
 if __name__ == "__main__":
     main()

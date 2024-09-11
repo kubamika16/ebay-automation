@@ -38,6 +38,7 @@ def push_notification_sender(text):
             "token": push_token,
             "user": push_user,
             "message": text,
+            "html": "1",  # This enables HTML formatting
         }), { "Content-type": "application/x-www-form-urlencoded" })
 
     response = conn.getresponse()
