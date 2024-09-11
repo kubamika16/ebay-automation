@@ -37,7 +37,7 @@ def push_notification_sender(text):
         urllib.parse.urlencode({
             "token": push_token,
             "user": push_user,
-            "message": f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}",
+            "message": text,
         }), { "Content-type": "application/x-www-form-urlencoded" })
 
     response = conn.getresponse()
