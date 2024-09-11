@@ -43,7 +43,7 @@ def main(event, context):
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], 1000)
+            iphone['name'], iphone['min_price'], iphone['max_price'], 5)
         
         # Add price range to each eBay item
         price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
