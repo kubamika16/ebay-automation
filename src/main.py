@@ -1,20 +1,21 @@
 import os
 import sys
-# import http.client, urllib
-# import ssl
-# import certifi
-# from dotenv import load_dotenv
+import http.client, urllib
+import ssl
+import certifi
+from dotenv import load_dotenv
 
-# # Load environment variables (PUSH_NOTIFICATION_TOKEN, PUSH_NOTIFICATION_USER)
-# load_dotenv()
-# push_token = os.getenv('PUSH_NOTIFICATION_TOKEN')
-# push_user = os.getenv('PUSH_NOTIFICATION_USER')
+# Load environment variables (PUSH_NOTIFICATION_TOKEN, PUSH_NOTIFICATION_USER)
+load_dotenv()
+push_token = os.getenv('PUSH_NOTIFICATION_TOKEN')
+push_user = os.getenv('PUSH_NOTIFICATION_USER')
 
 # This ensures the 'package' and 'src' directory is in the path
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
+from src.utils import push_notification_sender
 
 def main(event, context):
     print('Hello!')
@@ -62,21 +63,10 @@ def main(event, context):
     print(f"Number of undervalued items: {len(undervalued_items)}")
     print(undervalued_items)
 
-    # for item in undervalued_items:
-    #     # print(f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}")
-    #     # Use certifi's certificate bundle
-    #     context = ssl.create_default_context(cafile=certifi.where())
-
-    #     conn = http.client.HTTPSConnection("api.pushover.net:443", context=context)
-    #     conn.request("POST", "/1/messages.json",
-    #         urllib.parse.urlencode({
-    #             "token": push_token,
-    #             "user": push_user,
-    #             "message": f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}",
-    #         }), { "Content-type": "application/x-www-form-urlencoded" })
-
-    #     response = conn.getresponse()
-    #     print(response.status, response.reason)
+    for item in undervalued_items:
+        # print(f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}")
+        # Use certifi's certificate bundle
+        push_notification_sender(f"Check out this {item["Title"]}, going for {item["Price"]} GBP : {item["URL"]}")
 
 if __name__ == "__main__":
     main()
