@@ -41,7 +41,7 @@ def main(event, context):
 
     # Iterate over the list of iPhones and fetch eBay items for each one
     for iphone in iphones:
-        print(f"Processing {iphone['name']}")
+        # print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
             iphone['name'], iphone['min_price'], iphone['max_price'], 5)
         
