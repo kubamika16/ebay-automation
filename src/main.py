@@ -1,14 +1,5 @@
 import os
 import sys
-import http.client, urllib
-import ssl
-import certifi
-from dotenv import load_dotenv
-
-# Load environment variables (PUSH_NOTIFICATION_TOKEN, PUSH_NOTIFICATION_USER)
-load_dotenv()
-push_token = os.getenv('PUSH_NOTIFICATION_TOKEN')
-push_user = os.getenv('PUSH_NOTIFICATION_USER')
 
 # This ensures the 'package' and 'src' directory is in the path
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
