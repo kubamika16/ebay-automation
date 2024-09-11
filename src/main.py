@@ -11,13 +11,13 @@ from src.utils import push_notification_sender
 def main(event, context):
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
-        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 350},
-        {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 600},
-        {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 600},
-        {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 700},
+        {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
+        {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
+        {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
+        {'name': 'iPhone 8 Plus 128GB', 'min_price': 40, 'max_price': 70},
 
-        {'name': 'iPhone X 64GB', 'min_price': 40, 'max_price': 700},
-        {'name': 'iPhone X 256GB', 'min_price': 50, 'max_price': 900},
+        {'name': 'iPhone X 64GB', 'min_price': 40, 'max_price': 70},
+        {'name': 'iPhone X 256GB', 'min_price': 50, 'max_price': 90},
 
         {'name': 'iPhone XR 64GB', 'min_price': 40, 'max_price': 70},
         {'name': 'iPhone XR 128GB', 'min_price': 60, 'max_price': 100},
