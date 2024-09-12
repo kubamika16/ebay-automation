@@ -26,7 +26,7 @@ Here’s an example of the notification sent when the app identifies a match:
 - **Price**: £150 (which falls within the predefined undervalued price range of £110 - £150)
 - **Link**: The notification includes a direct link to the eBay auction for quick access.
 
-![Notification Example](path_to_your_image)
+![Notification Example](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_7995+Small.jpeg)
 ![Notification Message on Pushover App](path_to_your_image)
 ![Actual item (iPhone 12)](path_to_your_image)
 
