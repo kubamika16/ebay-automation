@@ -1,4 +1,4 @@
-# eBay Undervalued iPhone Detector
+# eBay Undervalued iPhone Detector (Ebay Automation)
 
 This project is designed to automate the detection of potentially undervalued iPhones listed on eBay. It integrates eBay’s API with AI-powered item analysis to notify users when good deals appear.
 
