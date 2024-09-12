@@ -27,6 +27,8 @@ Here’s an example of the notification sent when the app identifies a match:
 - **Link**: The notification includes a direct link to the eBay auction for quick access.
 
 ![Notification Example](path_to_your_image)
+![Notification Message on Pushover App](path_to_your_image)
+![Actual item (iPhone 12)](path_to_your_image)
 
 This system ensures that fresh listings from the last 5 minutes are evaluated and flagged in real-time.
 
