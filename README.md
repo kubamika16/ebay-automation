@@ -28,7 +28,7 @@ Here’s an example of the notification sent when the app identifies a match:
 
 [![Notification Example](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_7995+Small.jpeg)](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_7995+Medium.jpeg)
 [![Notification Message on Pushover App](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8014+Small.jpeg)](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8014+Medium.jpeg)
-[![Actual item (iPhone 12)](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8015+Small.jpeg)](![path_to_large_image](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8015+Medium.jpeg))
+[![Actual item (iPhone 12)](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8015+Small.jpeg)](https://jaku-mika-media-bucket.s3.eu-west-2.amazonaws.com/IMG_8015+Medium.jpeg)
 
 This system ensures that fresh listings from the last 5 minutes are evaluated and flagged in real-time.
 
