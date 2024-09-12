@@ -9,7 +9,7 @@ def process_ebay_items(item_name, min_price, max_price, time_limit_minutes):
     """Process eBay items based on search criteria and filter by time listed."""
     items = fetch_items_from_ebay(
         item_name, min_price, max_price, time_limit_minutes)
-    #  print(items)
+    print(f'Items from eBay: {items}')
     relevant_items = []
     gpt4o_interaction_counter = 0
 
