@@ -17,10 +17,24 @@ The app uses predefined pricing rules and GPT-based analysis to identify underva
 3. **Real-Time Notifications**:
    - When an undervalued iPhone in good condition is detected, the app sends out real-time notifications to alert the user.
 
+## Push Notification Result
+
+The project delivers notifications via the [Pushover](https://pushover.net/) service when a new undervalued item is found.
+
+Here’s an example of the notification sent when the app identifies a match:
+- **Item**: Apple iPhone 12 - 64GB - White (Unlocked)
+- **Price**: £150 (which falls within the predefined undervalued price range of £110 - £150)
+- **Link**: The notification includes a direct link to the eBay auction for quick access.
+
+![Notification Example](path_to_your_image)
+
+This system ensures that fresh listings from the last 5 minutes are evaluated and flagged in real-time.
+
 ## Technologies Used
 - **AWS Lambda**: Serverless function for executing tasks every 5 minutes.
 - **eBay API**: To search and filter iPhone listings.
 - **OpenAI (GPT)**: For analyzing item descriptions to determine item conditions.
+- **Pushover**: For sending real-time push notifications.
 - **GitHub Actions**: Used for CI/CD to automatically update the Lambda function when new code is committed.
 
 ## Continuous Deployment and Automation
@@ -28,10 +42,3 @@ The project is set up with a CI/CD pipeline that automatically deploys changes f
 
 ## Purpose
 This project showcases my ability to integrate cloud-based services, APIs, and AI models to create real-time automated systems. It demonstrates skills in serverless architecture, automation, and AI-based decision-making.
-
----
-
-### Why This Structure Works:
-- **General and Future-Proof**: By avoiding specific details like iPhone models and condition categories, the `README.md` remains adaptable to future changes in the app.
-- **Highlighting Key Skills**: It focuses on the technologies and workflow, which is ideal for a portfolio project.
-- **No Installation Focus**: Since you’re not expecting others to use it, keeping out specific installation instructions keeps the focus on your skills and the purpose of the project.
