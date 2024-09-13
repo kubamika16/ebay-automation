@@ -33,7 +33,7 @@ def get_openai_response(prompt, model="gpt-4o"):
 
 def analyze_item_condition(description, item_title):
     # Create the prompt with the item's description
-    item_status_prompt = f"You have 2 conditions to check. If both are satisfied, return 'GOOD CONDITION', otherwise return 'BAD CONDITION'.| 1: Check the title '{item_title}'. If the item is an iPhone model outside the range of iPhone 8 to iPhone 12, return 'BAD CONDITION'. If the model is within this range, proceed to the next step.| 2: Analyze the provided description. If the description mentions any vulnerabilities (e.g., broken screen, cracked glass, non-functional components, faulty charging port, bad battery condition), return 'BAD CONDITION'. If no such issues are mentioned, return 'GOOD CONDITION'. UNDER ANY CIRTUMSTANCES DON'T WRITE OTHER WORDS THAN 'GOOD CONDITION' OR 'BAD CONDITION' Description: {description}"
+    item_status_prompt = f"You have 2 conditions to check. If both are satisfied, return 'GOOD CONDITION', otherwise return 'BAD CONDITION'.| 1: Check the title '{item_title}'. If the item is an iPhone model outside the range of iPhone 8 to iPhone 12, return 'BAD CONDITION'. If the model is within this range, proceed to the next step.| 2: Analyze the provided description. If the description mentions any vulnerabilities (e.g., broken screen, cracked glass, non-functional components, faulty charging port, bad battery condition - less than 85% of battery condition), return 'BAD CONDITION'. If no such issues are mentioned, return 'GOOD CONDITION'. UNDER ANY CIRTUMSTANCES DON'T WRITE OTHER WORDS THAN 'GOOD CONDITION' OR 'BAD CONDITION' Description: {description}"
 
 
 
