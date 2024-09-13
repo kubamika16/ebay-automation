@@ -1,5 +1,3 @@
-from src.utils import push_notification_sender, get_time_limit
-from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 import os
 import sys
 
@@ -7,6 +5,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
+from src.utils import push_notification_sender, get_time_limit
+from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 
 def main(event, context):
     time_limit = get_time_limit()
