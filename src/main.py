@@ -10,8 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 def main(event, context):
     time_limit = get_time_limit()
-    print(f"-----THIS FUNCTION RUNS EVERY {
-          time_limit} AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
+    print(f"-----THIS FUNCTION RUNS EVERY {time_limit} AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
 
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
@@ -64,12 +63,10 @@ def main(event, context):
     # Iterate over the list of iPhones and fetch eBay items for each one. Last argument is about timestamp of the data (5 minutes means that data will be collected from eBay from last 5 minutes)
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
-        ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], time_limit)
+        ebay_items = process_ebay_items(iphone['name'], iphone['min_price'], iphone['max_price'], time_limit)
 
         # Add price range to each eBay item
-        price_range_message = f"£{
-            iphone['min_price']} - £{iphone['max_price']}"
+        price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
         for item in ebay_items:
             item['Price Range'] = price_range_message
 
@@ -79,19 +76,16 @@ def main(event, context):
     undervalued_items = filter_undervalued_items(all_items)
 
     # Display the number and details of undervalued items
-    print(f"Number of undervalued items ({
-          len(undervalued_items)}): {undervalued_items}")
+    print(f"Number of undervalued items ({len(undervalued_items)}): {undervalued_items}")
 
     # Send notifications for undervalued items
     for item in undervalued_items:
         try:
-            message = f"Undervalued item: <b>{item['Title']}</b>\nPrice: £{
-                item['Price']} (within range of {item['Price Range']})\n<a href='{item['URL']}'>Check it out</a>"
+            message = f"Undervalued item: <b>{item['Title']}</b>\nPrice: £{item['Price']} (within range of {item['Price Range']})\n<a href='{item['URL']}'>Check it out</a>"
             print(f"Sending notification: {message}")
             push_notification_sender(message)
         except Exception as e:
-            print(f"Failed to send notification for item {
-                  item['ID']}: {str(e)}")
+            print(f"Failed to send notification for item {item['ID']}: {str(e)}")
 
 
 if __name__ == "__main__":
