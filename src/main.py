@@ -92,7 +92,7 @@ def main(event, context):
     # Send notifications for undervalued items
     for item in undervalued_items:
         try:
-            message = f"Undervalued item: <b>{item['Title']}</b>\nPrice: £{item['Price']} (within range of {item['Price Range']})\n<a href='{item['URL']}'>Check it out</a>"
+            message = f"Undervalued item: <b>{item['Title']}</b>\nPrice: £{item['Price']} (within range of {item['Price Range']})\n<a href='{item['URL']}'>Check it out!</a>"
             print(f"Sending notification: {message}")
             push_notification_sender(message)
         except Exception as e:
