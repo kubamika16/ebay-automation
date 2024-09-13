@@ -6,9 +6,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
-from src.utils import push_notification_sender
+from src.utils import push_notification_sender, get_time_limit
 
 def main(event, context):
+    print(f"-----THIS FUNCTION RUNS EVERY {print(get_time_limit)} AND CHECK ITEMS FROM LAST {print(get_time_limit)} MINUTES-----")
+
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
         {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
@@ -39,11 +41,11 @@ def main(event, context):
 
     all_items = []
 
-    # Iterate over the list of iPhones and fetch eBay items for each one
+    # Iterate over the list of iPhones and fetch eBay items for each one. Last argument is about timestamp of the data (5 minutes means that data will be collected from eBay from last 5 minutes)
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], 5)
+            iphone['name'], iphone['min_price'], iphone['max_price'], get_time_limit)
         
         # Add price range to each eBay item
         price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
