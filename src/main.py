@@ -1,5 +1,5 @@
-from src.utils import push_notification_sender, get_time_limit
-from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
+from utils import push_notification_sender, get_time_limit
+from ebay_data_processor import process_ebay_items, filter_undervalued_items
 import os
 import sys
 
@@ -8,12 +8,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
 
-def main(event, context):
+def main():
     time_limit = get_time_limit()
     print(f"-----THIS FUNCTION RUNS EVERY {time_limit} AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
 
-    # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
-    iphones = [
+    # List of Apple products with model name and price range (in GBP)
+    apple_products = [
+        #IPHONES
         {'name': 'iPhone 8 64GB', 'min_price': 20, 'max_price': 35},
         {'name': 'iPhone 8 128GB', 'min_price': 30, 'max_price': 60},
         {'name': 'iPhone 8 Plus 64GB', 'min_price': 30, 'max_price': 60},
@@ -56,21 +57,31 @@ def main(event, context):
         {'name': 'iPhone 14 Pro 256GB', 'min_price': 400, 'max_price': 500},
         {'name': 'iPhone 14 Pro Max 128GB', 'min_price': 450, 'max_price': 500},
         {'name': 'iPhone 14 Pro Max 256GB', 'min_price': 450, 'max_price': 540},
+
+        #IPADS
+        {'name': 'iPad Air 4th Gen 64GB', 'min_price': 150, 'max_price': 200},
+        {'name': 'iPad Air 4th Gen 256GB', 'min_price': 200, 'max_price': 280},
+        {'name': 'iPad 9th Gen 64GB', 'min_price': 120, 'max_price': 180},
+        {'name': 'iPad 9th Gen 256GB', 'min_price': 150, 'max_price': 200},
+        {'name': 'iPad Pro 2018 64GB', 'min_price': 150, 'max_price': 220},
+        {'name': 'iPad Pro 2018 256GB', 'min_price': 180, 'max_price': 240},
+        {'name': 'iPad Mini 6th Gen 64GB', 'min_price': 180, 'max_price': 240},
+        {'name': 'iPad Mini 6th Gen 256GB', 'min_price': 220, 'max_price': 300},
     ]
 
     all_items = []
 
-    # Iterate over the list of iPhones and fetch eBay items for each one. Last argument is about timestamp of the data (5 minutes means that data will be collected from eBay from last 5 minutes)
-    for iphone in iphones:
-        print(f"Processing {iphone['name']}")
-        ebay_items = process_ebay_items(iphone['name'], iphone['min_price'], iphone['max_price'], time_limit)
+    # Iterate over the list of Apple products and fetch eBay items for each one. Last argument is about timestamp of the data (5 minutes means that data will be collected from eBay from last 5 minutes)
+    for apple_product in apple_products:
+        print(f"Processing {apple_product['name']}")
+        ebay_items = process_ebay_items(apple_product['name'], apple_product['min_price'], apple_product['max_price'], time_limit)
 
         # Add price range to each eBay item
-        price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
+        price_range_message = f"£{apple_product['min_price']} - £{apple_product['max_price']}"
         for item in ebay_items:
             item['Price Range'] = price_range_message
 
-        all_items.extend(ebay_items)  # Combine results from each iPhone model
+        all_items.extend(ebay_items)  # Combine results from each Apple product model
 
      # Filter out undervalued items based on their condition status
     undervalued_items = filter_undervalued_items(all_items)

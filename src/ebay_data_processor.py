@@ -7,8 +7,7 @@ from datetime import datetime, timedelta, timezone
 
 def process_ebay_items(item_name, min_price, max_price, time_limit_minutes):
     """Process eBay items based on search criteria and filter by time listed."""
-    items = fetch_items_from_ebay(
-        item_name, min_price, max_price, time_limit_minutes)
+    items = fetch_items_from_ebay(item_name, min_price, max_price, time_limit_minutes)
     # print(f'Items from eBay: {items}')
     relevant_items = []
     gpt4o_interaction_counter = 0
@@ -18,7 +17,6 @@ def process_ebay_items(item_name, min_price, max_price, time_limit_minutes):
 
     # Loop through each item and process only the ones listed within the time limit
     for item in items:
-        # print(item)
         # Get the item start time and convert it to UK time
         item_start_time = item.listingInfo.startTime
 
