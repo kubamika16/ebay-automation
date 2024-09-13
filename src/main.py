@@ -36,7 +36,25 @@ def main(event, context):
         {'name': 'iPhone 12 128GB', 'min_price': 120, 'max_price': 160},
 
         {'name': 'iPhone 12 Pro 128GB', 'min_price': 120, 'max_price': 180},
-        {'name': 'iPhone 12 Pro 256GB', 'min_price': 110, 'max_price': 200}
+        {'name': 'iPhone 12 Pro 256GB', 'min_price': 110, 'max_price': 200},
+
+        {'name': 'iPhone 13 128GB', 'min_price': 200, 'max_price': 250},
+        {'name': 'iPhone 13 256GB', 'min_price': 200, 'max_price': 270},
+        {'name': 'iPhone 13 Mini 128GB', 'min_price': 150, 'max_price': 200},
+        {'name': 'iPhone 13 Mini 256GB', 'min_price': 150, 'max_price': 230},
+        {'name': 'iPhone 13 Pro 128GB', 'min_price': 300, 'max_price': 330},
+        {'name': 'iPhone 13 Pro 256GB', 'min_price': 300, 'max_price': 350},
+        {'name': 'iPhone 13 Pro Max 128GB', 'min_price': 240, 'max_price': 290},
+        {'name': 'iPhone 13 Pro Max 256GB', 'min_price': 250, 'max_price': 350},
+
+        {'name': 'iPhone 14 128GB', 'min_price': 300, 'max_price': 350},
+        {'name': 'iPhone 14 256GB', 'min_price': 300, 'max_price': 350},
+        {'name': 'iPhone 14 Plus 128GB', 'min_price': 280, 'max_price': 330},
+        {'name': 'iPhone 14 Plus 256GB', 'min_price': 280, 'max_price': 350},
+        {'name': 'iPhone 14 Pro 128GB', 'min_price': 380, 'max_price': 480},
+        {'name': 'iPhone 14 Pro 256GB', 'min_price': 400, 'max_price': 500},
+        {'name': 'iPhone 14 Pro Max 128GB', 'min_price': 450, 'max_price': 500},
+        {'name': 'iPhone 14 Pro Max 256GB', 'min_price': 450, 'max_price': 530},
     ]
 
     all_items = []
