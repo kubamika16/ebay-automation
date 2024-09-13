@@ -55,7 +55,7 @@ def main(event, context):
         {'name': 'iPhone 14 Pro 128GB', 'min_price': 380, 'max_price': 480},
         {'name': 'iPhone 14 Pro 256GB', 'min_price': 400, 'max_price': 500},
         {'name': 'iPhone 14 Pro Max 128GB', 'min_price': 450, 'max_price': 500},
-        {'name': 'iPhone 14 Pro Max 256GB', 'min_price': 450, 'max_price': 530},
+        {'name': 'iPhone 14 Pro Max 256GB', 'min_price': 450, 'max_price': 540},
     ]
 
     all_items = []
