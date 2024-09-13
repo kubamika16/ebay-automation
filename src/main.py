@@ -9,7 +9,8 @@ from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 from src.utils import push_notification_sender, get_time_limit
 
 def main(event, context):
-    print(f"-----THIS FUNCTION RUNS EVERY {print(get_time_limit)} AND CHECK ITEMS FROM LAST {print(get_time_limit)} MINUTES-----")
+    time_limit = get_time_limit()
+    print(f"-----THIS FUNCTION RUNS EVERY {time_limit} AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
 
     # List of iPhones with model name and price range (in GBP), sorted from iPhone 8 to iPhone 12
     iphones = [
@@ -63,7 +64,7 @@ def main(event, context):
     for iphone in iphones:
         print(f"Processing {iphone['name']}")
         ebay_items = process_ebay_items(
-            iphone['name'], iphone['min_price'], iphone['max_price'], get_time_limit)
+            iphone['name'], iphone['min_price'], iphone['max_price'], time_limit)
         
         # Add price range to each eBay item
         price_range_message = f"£{iphone['min_price']} - £{iphone['max_price']}"
