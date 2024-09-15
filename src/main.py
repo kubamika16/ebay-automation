@@ -59,14 +59,14 @@ def main(event, context):
         {'name': 'iPhone 14 Pro Max 256GB', 'min_price': 450, 'max_price': 540},
 
         #IPADS
-        {'name': 'iPad Air 4th Gen 64GB', 'min_price': 150, 'max_price': 200},
-        {'name': 'iPad Air 4th Gen 256GB', 'min_price': 200, 'max_price': 280},
-        {'name': 'iPad 9th Gen 64GB', 'min_price': 120, 'max_price': 180},
-        {'name': 'iPad 9th Gen 256GB', 'min_price': 150, 'max_price': 200},
-        {'name': 'iPad Pro 2018 64GB', 'min_price': 150, 'max_price': 220},
-        {'name': 'iPad Pro 2018 256GB', 'min_price': 180, 'max_price': 240},
-        {'name': 'iPad Mini 6th Gen 64GB', 'min_price': 180, 'max_price': 240},
-        {'name': 'iPad Mini 6th Gen 256GB', 'min_price': 220, 'max_price': 300},
+        # {'name': 'iPad Air 4th Gen 64GB', 'min_price': 150, 'max_price': 200},
+        # {'name': 'iPad Air 4th Gen 256GB', 'min_price': 200, 'max_price': 280},
+        # {'name': 'iPad 9th Gen 64GB', 'min_price': 120, 'max_price': 180},
+        # {'name': 'iPad 9th Gen 256GB', 'min_price': 150, 'max_price': 200},
+        # {'name': 'iPad Pro 2018 64GB', 'min_price': 150, 'max_price': 220},
+        # {'name': 'iPad Pro 2018 256GB', 'min_price': 180, 'max_price': 240},
+        # {'name': 'iPad Mini 6th Gen 64GB', 'min_price': 180, 'max_price': 240},
+        # {'name': 'iPad Mini 6th Gen 256GB', 'min_price': 220, 'max_price': 300},
     ]
 
     all_items = []
