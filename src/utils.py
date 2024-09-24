@@ -45,12 +45,3 @@ def push_notification_sender(text):
     response = conn.getresponse()
     print(response.status, response.reason)
 
-def get_time_limit():
-    """Determine the time window (in minutes) for checking recent eBay items.
-    Uses 5-minute intervals during the day (5 AM - 12 AM) and 20-minute intervals during the night (12 AM - 5 AM)."""
-    now = datetime.now().hour
-    if 0 <= now < 5:  # It's between 12 AM and 5 AM
-        return 20
-    else:
-        return 5
-    
