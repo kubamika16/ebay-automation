@@ -5,12 +5,12 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "package"))
 
-from src.utils import push_notification_sender, get_time_limit
+from src.utils import push_notification_sender
 from src.ebay_data_processor import process_ebay_items, filter_undervalued_items
 
 def main(event, context):
-    time_limit = get_time_limit()
-    print(f"-----THIS FUNCTION RUNS EVERY {time_limit} AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
+    time_limit = 5
+    print(f"-----THIS FUNCTION RUNS EVERY {time_limit} MINUTES AND CHECK ITEMS FROM LAST {time_limit} MINUTES-----")
 
     # List of Apple products with model name and price range (in GBP)
     apple_products = [
